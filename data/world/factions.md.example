@@ -1,0 +1,54 @@
+﻿# factions.md — 势力宗门/王朝/种族档案
+
+> 豆包+ChatGPT融合。势力关系写入原子锁，禁止Agent随意变更敌友。
+> 每个势力必须绑定 geography 地块ID + power-system 体系ID。
+
+## 必填字段
+
+```yaml
+faction_id:         # 唯一编号（版本向量绑定用）
+faction_name:       # 势力名称
+faction_type:       # 宗门/凡俗王朝/魔族/妖族/商会/上古遗族
+power_rank:         # T0圣地/T1顶级/T2一流/T3二流/T4三流/T5不入流
+core_position:      # 驻地（绑定geography地块ID）
+territory:          # 掌控区域
+core_cultivate_path:# 主修体系（绑定power-system ID）
+core_tenet:         # 【防OOC核心】行事宗旨，决定所有成员行为逻辑
+hierarchy_rank:     # 内部等级线（外门→内门→亲传→执事→长老→宗主）
+enemy_and_ally:     # 【原子锁】固定敌/友（不可随意更改）
+  - {target: F003, type: 敌对, details: 千年世仇}
+  - {target: F002, type: 同盟, details: 共守防线}
+core_asset:         # 镇派宝物/独有功法/资源矿脉
+recruit_rule:       # 收徒硬性门槛
+leadership:         # 领导结构
+```
+
+## 可选字段
+
+```yaml
+history: internal_faction_split: historical_faction_war:
+unique_ceremony: secret_conspiracy: special_abilities: secrets:
+```
+
+## 玄幻示例《青云大世界》
+
+```yaml
+faction_id: F001
+faction_name: 青云宗
+faction_type: 正道修仙宗门
+power_rank: T2（一流宗门，东洲霸主）
+core_position: 东洲青冥域·青云宗主峰
+territory: 东洲青冥域全境 + 周边三座灵矿城
+core_cultivate_path: 正统剑修+灵气淬体（绑定 P01）
+core_tenet: 斩妖除魔，守护凡界，不主动掠夺低阶修士资源
+hierarchy_rank: 外门→内门→亲传→执事→长老→宗主→太上长老
+enemy_and_ally:
+  - {target: F003, type: 敌对, details: 黑骨魔门，千年世仇}
+  - {target: F002, type: 同盟, details: 清风谷，共守东洲}
+core_asset: 镇派青云剑（神器级）、千剑秘境、三阶灵脉矿（年产青纹灵石500枚）
+recruit_rule: 入门灵根最低凡品；魔根直接驱逐斩杀；不收散修背景不明者
+leadership: 宗主风无道（伪善·金丹巅峰）+ 九峰长老会
+internal_faction_split: 剑修派（主战）vs 丹修派（中立），各占4席长老
+unique_ceremony: 十年一度"千剑试炼"，前三名直升内门
+secret_conspiracy: 宗主暗中与黑骨魔门交易，以灵石换取延寿秘术
+```

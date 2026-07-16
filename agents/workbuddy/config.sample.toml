@@ -1,0 +1,42 @@
+﻿# agents/workbuddy/config.sample.toml
+# Work Buddy 配置样式——复制为 config.toml 并按需修改
+
+[signal]
+# 信号文件目录（Coordinator 写入状态，WorkBuddy 读取）
+watch_dir = "data/runtime/signals/"
+# 输出响应目录
+output_dir = "data/runtime/responses/"
+
+[polling]
+# 轮询周期（秒）
+interval = 5
+# 最大连续无信号静默次数（超过则发心跳检查）
+max_idle_cycles = 12
+
+[tasks]
+# 信号文件名 → 对应动作
+"chapter_done.md"       = "trigger_polish_review"
+"error_critical.md"     = "alert_user_block"
+"agent_timeout.md"      = "retry_once_then_pause"
+"patch_ready.md"        = "notify_user_review"
+"pipeline_stalled.md"   = "alert_user_intervention"
+
+[triggers]
+# 触发 WorkBuddy 介入的条件
+on_state = ["DRAFTING", "POLISHING"]
+on_user_mention = true
+on_error_pause = true
+
+[capabilities]
+# WorkBuddy 能做什么
+suggest_plot_twist = true
+fix_ai_tone = true
+brainstorm_names = true
+# 不能做什么（明确限制）
+write_full_chapter = false
+modify_world_building = false
+
+[heartbeat]
+# 心跳检查时，向所有 Agent 发 ping
+target_agents = ["coordinator", "worldbuilder", "characterkeeper", "chapterwriter", "styleguard", "polisheditor"]
+timeout = 30

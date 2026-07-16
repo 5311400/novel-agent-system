@@ -1,0 +1,41 @@
+﻿# geography.md — 地理世界档案
+
+> 参照豆包+DeepSeek方案。必填字段缺失 = Agent瞎编。
+> 设计原则：可被Agent精确检索和校验。
+
+## 必填字段
+
+```yaml
+world_name:        # 世界总名称
+world_layer:       # 世界分层（凡界/灵界/仙界/秘境夹层）
+overview:          # 地理总览（100-200字）
+regions:           # [{name, type, climate, terrain, significance, danger_level, key_locations}]
+map_relations:     # 区域间空间关系
+vital_resource:    # 核心资源分布（灵石/灵脉/天材地宝固定产出点）
+danger_zone:       # 永久危险区域（附战力限制）
+transport_rule:    # 跨区域通行规则
+travel_logic:      # 跨域移动逻辑
+```
+
+## 可选字段
+
+```yaml
+ancient_ruin: special_terrain_bonus: local_custom:
+monster_spawn_area: historical_land_event: natural_resources: seasonal_changes:
+```
+
+## 玄幻示例《青云大世界》
+
+```yaml
+world_name: 青云凡界
+world_layer: 凡界下层（王朝）、凡界中层（宗门疆域）、凡界上层（仙遗秘境夹层）
+overview: 以中央道尘陆为轴心，东洲灵秀、西荒险恶、南域汪洋、北境极寒。
+regions:
+  - {name: 东洲青冥域, type: 大陆, climate: 温润灵气充沛, terrain: 十万大山宗门聚集, significance: 主角出身地主舞台, danger_level: 3, key_locations: [{name: 青云宗主峰, description: 入云千丈灵脉环绕, significance: 主角宗门}, {name: 千剑秘境, description: 禁地内部时间10倍加速, significance: 中期试炼}]}
+  - {name: 西荒魔瘴域, type: 大陆, climate: 终年阴寒灵气带毒性, terrain: 黑沼遍布魔族盘踞, significance: 后期战场, danger_level: 8, key_locations: [{name: 寂灭古渊, description: 上古魔神残魂封印地, significance: 最终Boss}]}
+map_relations: 东洲→西荒需跨域传送阵（最低炼气九层）
+vital_resource: 东洲固定产出青纹灵石；西荒固定产出阴魂晶（年产上限100枚）
+danger_zone: 寂灭古渊（修为<金丹→神魂消融）；千剑秘境（单次上限3个月外界时间）
+transport_rule: 跨域传送阵最低炼气九层；跨洲域门需化神或域门令牌
+travel_logic: 同域内御剑可达；跨域需传送阵或域门
+```

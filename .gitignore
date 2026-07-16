@@ -1,0 +1,29 @@
+﻿# === 运行时状态 ===
+runtime/
+*.lock
+*.tmp
+data/.write.lock
+data/.read.shared
+data/.workbuddy.signal
+data/runtime/
+logs/
+*.log
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === IDE ===
+.idea/
+.vscode/
+
+# === Python ===
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# === 但保留目录结构 ===
+!data/runtime/.gitkeep
+!data/world/.gitkeep
+!data/characters/.gitkeep

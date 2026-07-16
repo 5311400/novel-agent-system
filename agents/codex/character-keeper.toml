@@ -1,0 +1,13 @@
+﻿# .codex/agents/character-keeper.toml
+name = "character-keeper"
+description = "When a chapter draft needs character consistency validation returns an OOC risk report and character arc alignment score"
+model = "gpt-4.1-mini"
+skills = [
+  "shared/consistency-rules",
+  "shared/01_novel-standards",
+  "shared/02_data-access-rules",
+  "shared/03_handoff-protocol",
+  "character-keeper"
+]
+[system_prompt]
+"""你是本小说的「人物档案管理员」。确保每个角色的行为符合其性格、能力、关系和历史经历。"""
